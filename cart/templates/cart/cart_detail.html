@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}Корзина{% endblock %}
+
+{% block content %}
+<h1>Корзина</h1>
+<table class="table">
+    <tr>
+        <th>Товар</th>
+        <th>Количество</th>
+        <th>Цена</th>
+        <th>Итого</th>
+        <th></th>
+    </tr>
+    {% for product in products %}
+    <tr>
+        <td>{{ product.name }}</td>
+        <td>{{ product.quantity }}</td>
+        <td>{{ product.price }}</td>
+        <td>{{ product.total_price }}</td>
+        <td><a href="{% url 'cart:cart_remove' product.id %}">Удалить</a></td>
+    </tr>
+    {% endfor %}
+</table>
+<h3>Итого: {{ total }} ₸</h3>
+<a href="{% url 'main:product_list' %}" class="btn btn-primary">Продолжить покупки</a>
+{% endblock %}
